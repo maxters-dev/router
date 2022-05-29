@@ -3,8 +3,10 @@ A Simple PHP Router for PHP 8
 
 Example:
 ```php
+use Maxters\Router\Router;
+use Maxters\Router\HttpVerbs;
 
-$router = new Maxters\Router\Router;
+$router = new Router;
 
 $router->get('/', fn () => 'Home Page');
 
