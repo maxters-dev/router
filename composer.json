@@ -1,0 +1,24 @@
+{
+    "name": "maxters/router",
+    "description": "A Simple PHP Router for PHP 8",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Maxters\\Router\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wallacemaxters",
+            "email": "wallacemaxters@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test" : "./vendor/bin/phpunit"
+    }
+}
