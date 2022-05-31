@@ -13,11 +13,11 @@ class Route
     protected $wheres = [];
 
     public function __construct(
-        public readonly string $pattern, 
+        public readonly string $pattern,
         public readonly HttpVerbs $verb,
         public readonly \Closure $action
-    )
-    {}
+    ) {
+    }
 
     /**
      * @return array<string,string>
@@ -57,17 +57,16 @@ class Route
         return preg_match($this->toRegex(), $pattern) > 0;
     }
 
-    
-    public function execute(string $pathCandidate): mixed
+    public function execute(string $pathCandidate, array $params = []): mixed
     {
-        $params = $this->getValuesFromPattern($pathCandidate);
+        $pathParams = $this->getValuesFromPattern($pathCandidate);
 
-        return ($this->action)(...$params);
+        return ($this->action)(...$params, ...$pathParams);
     }
 
-    protected function getValuesFromPattern(string $pathCandidate): array
+    public function getValuesFromPattern(string $pathCandidate): array
     {
-        if (! preg_match($this->toRegex(), $pathCandidate, $matches) > 0) {
+        if (!preg_match($this->toRegex(), $pathCandidate, $matches) > 0) {
             throw new RouteDoestNotMatchException(
                 "Value {$pathCandidate} doesnt not match with {$this->pattern}"
             );
@@ -75,5 +74,4 @@ class Route
 
         return array_slice($matches, 1);
     }
-
 }

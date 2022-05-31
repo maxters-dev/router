@@ -76,7 +76,7 @@ class Router
         return null;
     }
 
-    public function execute(string $pattern, HttpVerbs $verb)
+    public function execute(string $pattern, HttpVerbs $verb, array $params = [])
     {
         $route = $this->findRoute($pattern, $verb);
 
@@ -84,6 +84,6 @@ class Router
             return null;
         }
 
-        return $route->execute($pattern);
+        return $route->execute($pattern, $params);
     }
 }

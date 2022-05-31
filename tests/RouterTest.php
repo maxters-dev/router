@@ -67,6 +67,12 @@ class RouterTest extends TestCase
             $this->assertEquals($expected, $result);
         }
 
+        $router->post('/extra-params/{id}', fn ($request, $response, int $id) => [$request, $response, $id]);
+
+        $result = $router->execute('/extra-params/1000', HttpVerbs::POST, ['Request', 'Response']);
+
+        $this->assertEquals(['Request', 'Response', 1000], $result);
+
     }
 }
 
