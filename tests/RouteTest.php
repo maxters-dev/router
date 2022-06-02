@@ -14,8 +14,8 @@ class RouteTest extends TestCase
            return 'User ' . $user; 
         });
 
-        $result = $route->getValuesFromPattern('/user/wallace');
-        $this->assertEquals($result, ['wallace']);
+        $params = $route->extractParametersFromPath('/user/wallace');
+        $this->assertEquals($params, ['wallace']);
     }
 
 
@@ -26,7 +26,7 @@ class RouteTest extends TestCase
         });
 
         try {
-            $route->getValuesFromPattern('/invalid/wallace');
+            $route->extractParametersFromPath('/invalid/wallace');
         } catch (RouteDoesNotMatchException $e) {
             $this->assertInstanceOf(RouteDoesNotMatchException::class, $e);
         }

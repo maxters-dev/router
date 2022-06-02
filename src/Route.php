@@ -57,18 +57,18 @@ class Route
         return preg_match($this->toRegex(), $pattern) > 0;
     }
 
-    public function execute(string $pathCandidate, array $params = []): mixed
+    public function execute(string $path, array $params = []): mixed
     {
-        $pathParams = $this->getValuesFromPattern($pathCandidate);
+        $pathParams = $this->extractParametersFromPath($path);
 
         return ($this->action)(...$params, ...$pathParams);
     }
 
-    public function getValuesFromPattern(string $pathCandidate): array
+    public function extractParametersFromPath(string $path): array
     {
-        if (!preg_match($this->toRegex(), $pathCandidate, $matches) > 0) {
+        if (!preg_match($this->toRegex(), $path, $matches) > 0) {
             throw new RouteDoesNotMatchException(
-                "Value {$pathCandidate} doesnt not match with {$this->pattern}"
+                "Value {$path} doesnt not match with {$this->pattern}"
             );
         }
 
