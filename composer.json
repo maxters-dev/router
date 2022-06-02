@@ -19,6 +19,6 @@
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
-        "test" : "./vendor/bin/phpunit"
+        "test": "export XDEBUG_MODE=coverage && ./vendor/bin/phpunit --coverage-text"
     }
 }
