@@ -2,6 +2,8 @@
 
 namespace Maxters\Router;
 
+use Maxters\Router\Exceptions\RouteNotFoundException;
+
 class Router
 {
     /**
@@ -65,7 +67,7 @@ class Router
     }
 
 
-    public function findRoute(string $pattern, HttpVerbs $verb): ?Route
+    public function findRoute(string $pattern, HttpVerbs $verb): Route
     {
         foreach ($this->routes as $route) {
             if ($route->match($pattern) && $route->verb === $verb) {
@@ -73,16 +75,14 @@ class Router
             }
         }
 
-        return null;
+        throw new RouteNotFoundException(
+            "No route found with path \"{$pattern}\""
+        );
     }
 
     public function execute(string $pattern, HttpVerbs $verb, array $params = [])
     {
         $route = $this->findRoute($pattern, $verb);
-
-        if ($route === null) {
-            return null;
-        }
 
         return $route->execute($pattern, $params);
     }
