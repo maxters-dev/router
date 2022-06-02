@@ -2,7 +2,7 @@
 
 namespace Maxters\Router;
 
-use Maxters\Router\Exceptions\RouteDoestNotMatchException;
+use Maxters\Router\Exceptions\RouteDoesNotMatchException;
 
 class Route
 {
@@ -67,7 +67,7 @@ class Route
     public function getValuesFromPattern(string $pathCandidate): array
     {
         if (!preg_match($this->toRegex(), $pathCandidate, $matches) > 0) {
-            throw new RouteDoestNotMatchException(
+            throw new RouteDoesNotMatchException(
                 "Value {$pathCandidate} doesnt not match with {$this->pattern}"
             );
         }
