@@ -4,6 +4,10 @@ namespace Maxters\Router;
 
 use Maxters\Router\Exceptions\RouteDoesNotMatchException;
 
+/**
+ * 
+ * @author Wallace de Souza <wallacemaxters@gmail.com>
+ */
 class Route
 {
 

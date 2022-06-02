@@ -4,6 +4,11 @@ namespace Maxters\Router;
 
 use Maxters\Router\Exceptions\RouteNotFoundException;
 
+
+/**
+ * 
+ * @author Wallace de Souza <wallacemaxters@gmail.com>
+ */
 class Router
 {
     /**
@@ -65,8 +70,7 @@ class Router
     {
         return $this->createRoute($pattern, HttpVerbs::OPTIONS, $action);
     }
-
-
+    
     public function findRoute(string $pattern, HttpVerbs $verb): Route
     {
         foreach ($this->routes as $route) {
