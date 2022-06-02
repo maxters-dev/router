@@ -70,7 +70,7 @@ class Route
 
     public function extractParametersFromPath(string $path): array
     {
-        if (!preg_match($this->toRegex(), $path, $matches) > 0) {
+        if (preg_match($this->toRegex(), $path, $matches) === 0) {
             throw new RouteDoesNotMatchException(
                 "Value {$path} doesnt not match with {$this->pattern}"
             );
